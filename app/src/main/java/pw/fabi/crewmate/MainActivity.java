@@ -29,59 +29,49 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //((TextView) findViewById(R.id.textView)).setText();
-
         Button btn = (Button)findViewById(R.id.Swbutton);
         hasPermission = requestFilePermission();
 
         InputFilter[] filters = new InputFilter[1];
-        filters[0] = new InputFilter() {
-            @Override
-            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
-                if (end > start) {
-                    String destTxt = dest.toString();
-                    String resultingTxt = destTxt.substring(0, dstart) + source.subSequence(start, end) + destTxt.substring(dend);
-                    if (!resultingTxt.matches ("^\\d{1,3}(\\.(\\d{1,3}(\\.(\\d{1,3}(\\.(\\d{1,3})?)?)?)?)?)?")) {
-                        return "";
-                    } else {
-                        String[] splits = resultingTxt.split("\\.");
-                        for (int i=0; i<splits.length; i++) {
-                            if (Integer.valueOf(splits[i]) > 255) {
-                                return "";
-                            }
+        filters[0] = (source, start, end, dest, dstart, dend) -> {
+            if (end > start) {
+                String destTxt = dest.toString();
+                String resultingTxt = destTxt.substring(0, dstart) + source.subSequence(start, end) + destTxt.substring(dend);
+                if (!resultingTxt.matches ("^\\d{1,3}(\\.(\\d{1,3}(\\.(\\d{1,3}(\\.(\\d{1,3})?)?)?)?)?)?")) {
+                    return "";
+                } else {
+                    String[] splits = resultingTxt.split("\\.");
+                    for (String split : splits) {
+                        if (Integer.parseInt(split) > 255) {
+                            return "";
                         }
                     }
                 }
-                return null;
             }
+            return null;
         };
 
         ((EditText) findViewById(R.id.editTextTextAddr)).setFilters(filters);
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final String addr = ((EditText) findViewById(R.id.editTextTextAddr)).getText().toString();
-                if(addr.length() < 7){
-                    Toast.makeText(MainActivity.this,
-                            "Please type an IP address",
-                            Toast.LENGTH_LONG)
-                            .show();
-                    return;
-                }
-                final String port = ((EditText) findViewById(R.id.editTextTextPort)).getText().toString();
-                if(addr.length() < 2) {
-                    Toast.makeText(MainActivity.this,
-                            "Please type a Port",
-                            Toast.LENGTH_LONG)
-                            .show();
-                    return;
-                }
-                switchIpAddr(addr, port);
+        btn.setOnClickListener(v -> {
+            final String addr = ((EditText) findViewById(R.id.editTextTextAddr)).getText().toString();
+            if(addr.length() < 7){
+                Toast.makeText(MainActivity.this,
+                        "Please type an IP address",
+                        Toast.LENGTH_LONG)
+                        .show();
+                return;
             }
+            final String port = ((EditText) findViewById(R.id.editTextTextPort)).getText().toString();
+            if(addr.length() < 2) {
+                Toast.makeText(MainActivity.this,
+                        "Please type a Port",
+                        Toast.LENGTH_LONG)
+                        .show();
+                return;
+            }
+            switchIpAddr(addr, port);
         });
-
-
     }
 
 
@@ -89,7 +79,8 @@ public class MainActivity extends AppCompatActivity {
 
         short shortPort = Short.parseShort(port);
 
-        boolean result = new FileHandler().openFile(Environment.getExternalStorageDirectory().toString()+"/Android/data/com.innersloth.spacemafia/files/regionInfo.dat").replaceFile("Impostor", addr, shortPort);
+        boolean result = new FileHandler().openFile(Environment.getExternalStorageDirectory().toString() + "/Android/data/com.innersloth.spacemafia/files/regionInfo.dat")
+                .replaceFile("Impostor", addr, shortPort);
 
         if(result){
             Toast.makeText(MainActivity.this,
@@ -102,18 +93,6 @@ public class MainActivity extends AppCompatActivity {
                     "Error, try to grant permissions (this app doesn't work in android 11)",
                     Toast.LENGTH_LONG)
                     .show();
-        }
-        //Log.d("CREWMATE" ,"Result file: " + Boolean.toString(result));
-    }
-
-    public void listFilesForFolder(final File folder) {
-        File[] filesList = folder.listFiles();
-        for (final File fileEntry : filesList) {
-            if (fileEntry.isDirectory()) {
-                listFilesForFolder(fileEntry);
-            } else {
-                System.out.println(fileEntry.getName());
-            }
         }
     }
 
@@ -158,10 +137,6 @@ public class MainActivity extends AppCompatActivity {
 
             if (grantResults.length > 0
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                /*Toast.makeText(MainActivity.this,
-                        "Storage Permission Granted",
-                        Toast.LENGTH_SHORT)
-                        .show();*/
                 hasPermission = true;
             }
             else {
@@ -171,7 +146,5 @@ public class MainActivity extends AppCompatActivity {
                         .show();
                 hasPermission = false;
             }
-
     }
-
 }

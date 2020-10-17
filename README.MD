@@ -17,3 +17,19 @@ Follow easy instructions in app
 [![photo-2020-10-17-04-20-07.jpg](https://i.postimg.cc/wTrs8vMT/photo-2020-10-17-04-20-07.jpg)](https://postimg.cc/w7hBD9DS)
 
 Enjoy!
+
+## What is thing do
+
+Only replaces regionInfo.dat with a fresh brand new baked regionInfo.dat file
+
+## ToDo
+
+- Resolve names (DNS)
+- Saved servers or favorite servers [I find this useful]
+- the end?
+
+## Among Us server wat 
+
+Impostor is one of the first Among Us private servers, written in C#.
+
+https://github.com/AeonLucid/Impostor
