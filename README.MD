@@ -18,7 +18,7 @@ Follow easy instructions in app
 
 Enjoy!
 
-## What is thing do
+## What this thing do
 
 Only replaces regionInfo.dat with a fresh brand new baked regionInfo.dat file
 
@@ -33,3 +33,4 @@ Only replaces regionInfo.dat with a fresh brand new baked regionInfo.dat file
 Impostor is one of the first Among Us private servers, written in C#.
 
 https://github.com/AeonLucid/Impostor
+
