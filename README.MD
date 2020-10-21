@@ -24,7 +24,7 @@ Only replaces regionInfo.dat with a fresh brand new baked regionInfo.dat file
 
 ## ToDo
 
-- Resolve names (DNS)
+- Resolve names (DNS) [Done @tuxinal]
 - Saved servers or favorite servers [I find this useful]
 - the end?
 
