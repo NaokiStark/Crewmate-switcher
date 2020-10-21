@@ -32,45 +32,23 @@ public class MainActivity extends AppCompatActivity {
         Button btn = (Button)findViewById(R.id.Swbutton);
         hasPermission = requestFilePermission();
 
-        InputFilter[] filters = new InputFilter[1];
-        filters[0] = (source, start, end, dest, dstart, dend) -> {
-            if (end > start) {
-                String destTxt = dest.toString();
-                String resultingTxt = destTxt.substring(0, dstart) + source.subSequence(start, end) + destTxt.substring(dend);
-                if (!resultingTxt.matches ("^\\d{1,3}(\\.(\\d{1,3}(\\.(\\d{1,3}(\\.(\\d{1,3})?)?)?)?)?)?")) {
-                    return "";
-                } else {
-                    String[] splits = resultingTxt.split("\\.");
-                    for (String split : splits) {
-                        if (Integer.parseInt(split) > 255) {
-                            return "";
-                        }
-                    }
-                }
-            }
-            return null;
-        };
-
-        ((EditText) findViewById(R.id.editTextTextAddr)).setFilters(filters);
-
         btn.setOnClickListener(v -> {
-            final String addr = ((EditText) findViewById(R.id.editTextTextAddr)).getText().toString();
-            if(addr.length() < 7){
-                Toast.makeText(MainActivity.this,
-                        "Please type an IP address",
-                        Toast.LENGTH_LONG)
-                        .show();
-                return;
+            String addr = ((EditText) findViewById(R.id.editTextTextAddr)).getText().toString();
+            if(!addr.startsWith("http://") & !addr.startsWith("https://")){ // make sure address starts with http://
+                addr = "http://" + addr;
             }
+            String ipAddr = new IPHandler().getIp(addr,MainActivity.this);
             final String port = ((EditText) findViewById(R.id.editTextTextPort)).getText().toString();
-            if(addr.length() < 2) {
+            if(port.length() < 2) {
                 Toast.makeText(MainActivity.this,
                         "Please type a Port",
                         Toast.LENGTH_LONG)
                         .show();
                 return;
             }
-            switchIpAddr(addr, port);
+            if(ipAddr != null){
+                switchIpAddr(ipAddr.split("/")[1], port);
+            }
         });
     }
 
