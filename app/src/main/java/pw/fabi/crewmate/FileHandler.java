@@ -28,8 +28,14 @@ public class FileHandler {
     public boolean replaceFile(String name, String ip, short port) {
         try {
 
-            // *Users*
+
             if(!file.exists()){
+                // ok, stop
+                File dirParent = new File(file.getParent());
+                if(!dirParent.exists()){
+                    dirParent.mkdirs();
+                }
+
                 file.createNewFile();
             }
             else{
