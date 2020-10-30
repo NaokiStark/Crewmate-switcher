@@ -10,6 +10,11 @@
 
 ## How to use:
 
+Now in Play Store:
+
+[![Google Play Store](https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png)](https://play.google.com/store/apps/details?id=pw.fabi.crewmate)
+https://play.google.com/store/apps/details?id=pw.fabi.crewmate
+
 Download the apk in **[releases](https://github.com/NaokiStark/Crewmate-switcher/releases)** and install
 
 Follow easy instructions in app
