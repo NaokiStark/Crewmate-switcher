@@ -28,11 +28,16 @@ public class FileHandler {
     public boolean replaceFile(String name, String ip, short port) {
         try {
 
-            // Clear file
-
-            PrintWriter writer = new PrintWriter(file);
-            writer.print("");
-            writer.close();
+            // *Users*
+            if(!file.exists()){
+                file.createNewFile();
+            }
+            else{
+                // Clear file
+                PrintWriter writer = new PrintWriter(file);
+                writer.print("");
+                writer.close();
+            }
 
             OutputStream ostr = new FileOutputStream(file);
             DataOutputStream outd = new DataOutputStream(ostr);
