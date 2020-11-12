@@ -21,6 +21,8 @@ Follow easy instructions in app
 
 [![photo-2020-10-17-04-20-07.jpg](https://i.postimg.cc/wTrs8vMT/photo-2020-10-17-04-20-07.jpg)](https://postimg.cc/w7hBD9DS)
 
+Also, you can put a domain and it will resolve [@tuxinal]
+
 Enjoy!
 
 ## What this thing do
@@ -38,4 +40,9 @@ Only replaces regionInfo.dat with a fresh brand new baked regionInfo.dat file
 Impostor is one of the first Among Us private servers, written in C#.
 
 https://github.com/AeonLucid/Impostor
+
+## Skeld.net
+
+This is a easy way to set a server to connect skeld.net ( https://skeld.net )
+The ip address is on their Discord Server (#how-to-join-pc channel)
 
