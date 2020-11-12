@@ -1,12 +1,12 @@
 # Among Us server switcher for Android
 
-** Im Fixing for version 22a **
-
 **No root required ✨**
 
 **Note!** due restrictions in **Android 11 this will NOT WORK AT ALL**
 
 **Note 2** This needs File permissions!
+
+**If this not work due an Among Us update, please let me know (in issues) or you can do a pull request**
 
 [![Archivo.png](https://i.postimg.cc/ZRf587yK/Archivo.png)](https://postimg.cc/k6bC9yck)
 
