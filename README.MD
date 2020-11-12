@@ -1,5 +1,7 @@
 # Among Us server switcher for Android
 
+** Im Fixing for version 22a **
+
 **No root required ✨**
 
 **Note!** due restrictions in **Android 11 this will NOT WORK AT ALL**
