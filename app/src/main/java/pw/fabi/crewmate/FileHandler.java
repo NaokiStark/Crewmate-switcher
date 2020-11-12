@@ -12,6 +12,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.InetAddress;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.charset.spi.CharsetProvider;
@@ -60,7 +62,9 @@ public class FileHandler {
             outd.writeInt((name + "-Master-1").getBytes().length); // Server name byte-length
             outd.writeBytes(name + "-Master-1"); // First Server
             outd.write(InetAddress.getByName(ip).getAddress()); // Ip address
-            outd.writeShort(port); // port
+
+            byte[] shortLE = byteArrayToShortLE(port);
+            outd.write(shortLE); // port
             outd.writeInt(0); // Padding
 
             outd.close();
@@ -71,5 +75,13 @@ public class FileHandler {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public static byte[] byteArrayToShortLE(short input)
+    {
+        ByteBuffer buffer = ByteBuffer.allocate(2);
+        buffer.order(ByteOrder.LITTLE_ENDIAN);
+        buffer.putShort(input);
+        return buffer.array();
     }
 }
