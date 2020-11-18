@@ -23,27 +23,34 @@ import java.io.File;
 public class MainActivity extends AppCompatActivity {
 
     boolean hasPermission = false;
-
+    Button btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button btn = (Button)findViewById(R.id.Swbutton);
+        btn = (Button)findViewById(R.id.Swbutton);
         hasPermission = requestFilePermission();
 
         btn.setOnClickListener(v -> {
             String addr = ((EditText) findViewById(R.id.editTextTextAddr)).getText().toString();
+            if(addr.length() < 4){
+                // weird bypass
+                showToast("Please type an IP Address or Domain");
+                btn.setBackgroundColor(getResources().getColor(R.color.red));
+                return;
+            }
+
             if(!addr.startsWith("http://") & !addr.startsWith("https://")){ // make sure address starts with http://
                 addr = "http://" + addr;
             }
+
             String ipAddr = new IPHandler().getIp(addr,MainActivity.this);
             final String port = ((EditText) findViewById(R.id.editTextTextPort)).getText().toString();
+
             if(port.length() < 2) {
-                Toast.makeText(MainActivity.this,
-                        "Please type a Port",
-                        Toast.LENGTH_LONG)
-                        .show();
+                showToast("Please type a Port");
+                btn.setBackgroundColor(getResources().getColor(R.color.red));
                 return;
             }
             if(ipAddr != null){
@@ -52,26 +59,36 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
     public void switchIpAddr(String addr, String port){
 
-        short shortPort = Short.parseShort(port);
+        // Google Play report this (people typing 2202322023?)
+       short shortPort = 0;
+        try{
+            shortPort = Short.parseShort(port);
+        }
+        catch (NumberFormatException ex){
+            showToast("Max port number: 65534. Make sure it is correct (Default Port: 22023)");
+            btn.setBackgroundColor(getResources().getColor(R.color.red));
+            ((EditText) findViewById(R.id.editTextTextPort)).setText("22023");
+            ex.printStackTrace();
+            return;
+        }
 
         boolean result = new FileHandler().openFile(Environment.getExternalStorageDirectory().toString() + "/Android/data/com.innersloth.spacemafia/files/regionInfo.dat")
                 .replaceFile("Impostor", addr, shortPort);
 
         if(result){
-            Toast.makeText(MainActivity.this,
-                    "Server changed successfully, (re)start the game",
-                    Toast.LENGTH_LONG)
-                    .show();
+            btn.setBackgroundColor(getResources().getColor(R.color.green));
+            showToast("Server changed successfully, (re)start the game");
         }
         else{
-            Toast.makeText(MainActivity.this,
-                    "Error, try to grant permissions (this app doesn't work in android 11)",
-                    Toast.LENGTH_LONG)
-                    .show();
+            btn.setBackgroundColor(getResources().getColor(R.color.red));
+            showToast("Error, try to grant permissions (this app doesn't work in android 11)");
         }
+    }
+
+    public void showToast(String text){
+        Toast.makeText(MainActivity.this, text, Toast.LENGTH_LONG).show();
     }
 
     public boolean requestFilePermission(){
@@ -118,10 +135,7 @@ public class MainActivity extends AppCompatActivity {
                 hasPermission = true;
             }
             else {
-                Toast.makeText(MainActivity.this,
-                        "App requires file permission to access Among Us files",
-                        Toast.LENGTH_SHORT)
-                        .show();
+                showToast("App requires file permission to access Among Us files");
                 hasPermission = false;
             }
     }

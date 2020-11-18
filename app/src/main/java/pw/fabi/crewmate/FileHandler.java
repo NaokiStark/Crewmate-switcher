@@ -30,7 +30,6 @@ public class FileHandler {
     public boolean replaceFile(String name, String ip, short port) {
         try {
 
-
             if(!file.exists()){
                 // ok, stop
                 File dirParent = new File(file.getParent());

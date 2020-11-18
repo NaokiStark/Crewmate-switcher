@@ -17,7 +17,9 @@ Now in Play Store:
 [![Google Play Store](https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png)](https://play.google.com/store/apps/details?id=pw.fabi.crewmate)
 https://play.google.com/store/apps/details?id=pw.fabi.crewmate
 
-Download the apk in **[releases](https://github.com/NaokiStark/Crewmate-switcher/releases)** and install
+**OR**
+
+(Recommended) Download the apk in **[releases](https://github.com/NaokiStark/Crewmate-switcher/releases)** and install
 
 Follow easy instructions in app
 
@@ -41,10 +43,8 @@ Only replaces regionInfo.dat with a fresh brand new baked regionInfo.dat file
 
 Impostor is one of the first Among Us private servers, written in C#.
 
-https://github.com/AeonLucid/Impostor
+https://github.com/Impostor/Impostor
 
-## Skeld.net
+### Please, use the original client and stop cheating (please)
 
-This is a easy way to set a server to connect skeld.net ( https://skeld.net )
-The ip address is on their Discord Server (#how-to-join-pc channel)
-
+https://play.google.com/store/apps/details?id=com.innersloth.spacemafia&hl=es_AR&gl=US 
