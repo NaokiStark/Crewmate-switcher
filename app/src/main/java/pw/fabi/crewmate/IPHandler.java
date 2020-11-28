@@ -18,9 +18,14 @@ public class IPHandler {
         }  // Policy stuff for android 8+
         try {
             // Among Us only allows IPv4
-            Inet4Address ip = (Inet4Address) Inet4Address.getByName(new URL(url).getHost());
+            InetAddress ips[] = InetAddress.getAllByName(new URL(url).getHost());
 
-            return ip.toString();
+            for (InetAddress ip: ips) {
+                if (ip instanceof Inet4Address) {
+                    return ip.toString();
+                }
+            }
+            Toast.makeText(context,"Found no IPv4 addresses for this hostname",Toast.LENGTH_LONG).show();
         } catch (MalformedURLException e) {
             Toast.makeText(context,"Invalid Address",Toast.LENGTH_LONG).show();
         } catch (UnknownHostException e) {
