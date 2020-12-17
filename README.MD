@@ -2,9 +2,9 @@
 
 **No root required ✨**
 
-**Note!** due restrictions in **Android 11 this will NOT WORK AT ALL**
+**Note!**: due restrictions in **Android 11 this will NOT WORK AT ALL**
 
-**Note 2** This needs File permissions!
+**Note 2**: **MIUI 12(Android 10) has a protection to prevent apps access to another apps files and this app doesn't work, please check first if you have a Xiaomi phone and have MIUI 12!**
 
 **If this not work due an Among Us update, please let me know (in issues) or you can do a pull request**
 
