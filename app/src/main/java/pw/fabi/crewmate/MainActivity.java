@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        boolean result = new FileHandler().openFile(Environment.getExternalStorageDirectory().toString() + "/Android/data/com.innersloth.spacemafia/files/regionInfo.dat")
+        boolean result = new FileHandler().openFile(Environment.getExternalStorageDirectory().toString() + "/Android/data/xyz.crowdedmods.crowdedmod/files/regionInfo.dat")
                 .replaceFile("Impostor", addr, shortPort);
 
         if(result){
