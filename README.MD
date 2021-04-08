@@ -14,7 +14,7 @@
 
 Now in Play Store:
 
-(Not avaiable in Poland, because download without read description and push down with bad reviews, but can still download apk in this site)
+(Not available  in Poland, because people from this location download without read description and push down with bad reviews, but can still download apk in this site, sorry)
 
 [![Google Play Store](https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png)](https://play.google.com/store/apps/details?id=pw.fabi.crewmate)
 https://play.google.com/store/apps/details?id=pw.fabi.crewmate
